@@ -13,7 +13,7 @@ func isMatch(s, p string) bool {
 	}
 
 	dp[0][0] = true
-	for j := 1; j < n && dp[0][j-1]; j++ {
+	for j := 1; j < n && dp[0][j-1]; j += 2 {
 		if p[j] == '*' {
 			dp[0][j+1] = true
 		}
