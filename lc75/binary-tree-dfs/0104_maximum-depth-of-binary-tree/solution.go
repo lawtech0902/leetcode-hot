@@ -20,7 +20,29 @@ func maxDepth(root *TreeNode) int {
 }
 
 func maxDepth1(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
 
+	level := 0
+	queue := []*TreeNode{root}
+	for len(queue) != 0 {
+		size := len(queue)
+		level++
+		for i := 0; i < size; i++ {
+			node := queue[0]
+			queue = queue[1:]
+			if node.Left != nil {
+				queue = append(queue, node.Left)
+			}
+
+			if node.Right != nil {
+				queue = append(queue, node.Right)
+			}
+		}
+	}
+
+	return level
 }
 
 func max(a, b int) int {
