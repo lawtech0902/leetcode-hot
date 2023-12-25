@@ -8,15 +8,15 @@ package solution
 func isHappy(n int) bool {
 	slow, fast := n, n
 	for {
+		slow = squareSum(slow)
 		fast = squareSum(fast)
-		slow = squareSum(slow)
-		slow = squareSum(slow)
+		fast = squareSum(fast)
 		if slow == fast {
 			break
 		}
 	}
 
-	return fast == 1
+	return slow == 1
 }
 
 func squareSum(n int) int {
