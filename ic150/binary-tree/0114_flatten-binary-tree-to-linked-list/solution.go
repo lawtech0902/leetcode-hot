@@ -27,3 +27,23 @@ func flatten(root *TreeNode) {
 
 	cur.Right = right
 }
+
+var front = &TreeNode{}
+
+func flatten1(root *TreeNode) {
+	frontOrder(root)
+}
+
+func frontOrder(node *TreeNode) {
+	if node == nil {
+		return
+	}
+
+	left := node.Left
+	right := node.Right
+	front.Right = node
+	node.Left = nil
+	front = node
+	frontOrder(left)
+	frontOrder(right)
+}
