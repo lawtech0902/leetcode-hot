@@ -1,10 +1,7 @@
 /*
- * @Author: lawtech0902 584563542@qq.com
- * @Date: 2023-07-25 14:21:05
- * @LastEditors: lawtech0902 584563542@qq.com
- * @LastEditTime: 2023-08-24 10:11:48
- * @Description:
- */
+__author__ = 'robin-luo'
+__date__ = '2024/01/28 19:59'
+*/
 
 package solution
 
@@ -12,15 +9,17 @@ import (
 	"strconv"
 	"strings"
 )
-s
+
 func decodeString(s string) string {
-	stack := []string{}
-	curNum := 0
-	curStr := ""
+	var (
+		stack  []string
+		curNum = 0
+		curStr = ""
+	)
 
 	for i := 0; i < len(s); i++ {
 		if s[i] >= '0' && s[i] <= '9' {
-			num, _ := strconv.Atoi(string(s[i]))
+			num := int(s[i] - '0')
 			curNum = curNum*10 + num
 		} else if s[i] == '[' {
 			stack = append(stack, curStr)
@@ -29,9 +28,9 @@ func decodeString(s string) string {
 			curStr = ""
 		} else if s[i] == ']' {
 			num, _ := strconv.Atoi(stack[len(stack)-1])
-			prevStr := stack[len(stack)-2]
+			preStr := stack[len(stack)-2]
 			stack = stack[:len(stack)-2]
-			curStr = prevStr + strings.Repeat(curStr, num)
+			curStr = preStr + strings.Repeat(curStr, num)
 		} else {
 			curStr += string(s[i])
 		}
