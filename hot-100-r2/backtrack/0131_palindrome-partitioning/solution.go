@@ -11,11 +11,11 @@ func partition(s string) [][]string {
 		res   [][]string
 	)
 
-	backTracking(s, 0, track, &res)
+	backtracking(s, 0, track, &res)
 	return res
 }
 
-func backTracking(s string, startIndex int, track []string, res *[][]string) {
+func backtracking(s string, startIndex int, track []string, res *[][]string) {
 	if startIndex == len(s) {
 		temp := make([]string, len(track))
 		copy(temp, track)
@@ -26,7 +26,7 @@ func backTracking(s string, startIndex int, track []string, res *[][]string) {
 	for i := startIndex; i < len(s); i++ {
 		if isPalindrome(s, startIndex, i) {
 			track = append(track, s[startIndex:i+1])
-			backTracking(s, i+1, track, res)
+			backtracking(s, i+1, track, res)
 			track = track[:len(track)-1]
 		}
 	}

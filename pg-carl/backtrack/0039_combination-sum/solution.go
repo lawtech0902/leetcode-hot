@@ -1,14 +1,16 @@
 /*
-__author__ = 'robin-luo'
-__date__ = '2024/01/26 10:02'
-*/
+ * Author: robin-luo
+ * Created time: 2024-02-01 20:12:35
+ * Last Modified by: robin-luo
+ * Last Modified time: 2024-02-01 20:16:02
+ */
 
 package solution
 
 func combinationSum(candidates []int, target int) [][]int {
 	var (
-		track []int
 		res   [][]int
+		track []int
 	)
 
 	backtracking(target, 0, 0, candidates, track, &res)
@@ -20,7 +22,6 @@ func backtracking(target, curSum, startIndex int, candidates, track []int, res *
 		temp := make([]int, len(track))
 		copy(temp, track)
 		*res = append(*res, temp)
-		return
 	} else if curSum > target {
 		return
 	}

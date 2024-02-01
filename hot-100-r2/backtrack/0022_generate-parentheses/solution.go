@@ -7,11 +7,11 @@ package solution
 
 func generateParenthesis(n int) []string {
 	var res []string
-	backTracking(n, 0, 0, "", &res)
+	backtracking(n, 0, 0, "", &res)
 	return res
 }
 
-func backTracking(n, nLeft, nRight int, temp string, res *[]string) {
+func backtracking(n, nLeft, nRight int, temp string, res *[]string) {
 	if nLeft == n && nRight == n {
 		*res = append(*res, temp)
 		return
@@ -20,7 +20,7 @@ func backTracking(n, nLeft, nRight int, temp string, res *[]string) {
 	if nLeft < n {
 		temp += "("
 		nLeft++
-		backTracking(n, nLeft, nRight, temp, res)
+		backtracking(n, nLeft, nRight, temp, res)
 		nLeft--
 		temp = temp[:len(temp)-1]
 	}
@@ -28,7 +28,7 @@ func backTracking(n, nLeft, nRight int, temp string, res *[]string) {
 	if nLeft > nRight {
 		temp += ")"
 		nRight++
-		backTracking(n, nLeft, nRight, temp, res)
+		backtracking(n, nLeft, nRight, temp, res)
 		nRight--
 		temp = temp[:len(temp)-1]
 	}

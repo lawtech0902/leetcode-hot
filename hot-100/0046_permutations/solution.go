@@ -11,11 +11,11 @@ func permute(nums []int) [][]int {
 		res   [][]int
 	)
 
-	backTracking(nums, track, &res)
+	backtracking(nums, track, &res)
 	return res
 }
 
-func backTracking(nums, track []int, res *[][]int) {
+func backtracking(nums, track []int, res *[][]int) {
 	if len(nums) == 0 {
 		temp := make([]int, len(track))
 		copy(temp, track)
@@ -26,7 +26,7 @@ func backTracking(nums, track []int, res *[][]int) {
 		cur := nums[i]
 		track = append(track, cur)
 		nums = append(nums[:i], nums[i+1:]...)
-		backTracking(nums, track, res)
+		backtracking(nums, track, res)
 		nums = append(nums[:i], append([]int{cur}, nums[i:]...)...)
 		track = track[:len(track)-1]
 	}

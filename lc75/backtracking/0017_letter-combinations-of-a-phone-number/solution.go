@@ -25,11 +25,11 @@ func letterCombinations(digits string) []string {
 	}
 
 	res := make([]string, 0)
-	backTracking(digitsArr, digits, "", 0, &res)
+	backtracking(digitsArr, digits, "", 0, &res)
 	return res
 }
 
-func backTracking(digitsArr [10]string, digits, tempString string, index int, res *[]string) {
+func backtracking(digitsArr [10]string, digits, tempString string, index int, res *[]string) {
 	if len(tempString) == len(digits) {
 		*res = append(*res, tempString)
 		return
@@ -39,7 +39,7 @@ func backTracking(digitsArr [10]string, digits, tempString string, index int, re
 	letters := digitsArr[tempIndex]
 	for i := 0; i < len(letters); i++ {
 		tempString += string(letters[i])
-		backTracking(digitsArr, digits, tempString, index+1, res)
+		backtracking(digitsArr, digits, tempString, index+1, res)
 		tempString = tempString[:len(tempString)-1]
 	}
 }

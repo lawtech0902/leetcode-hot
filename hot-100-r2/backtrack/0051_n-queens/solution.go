@@ -20,11 +20,11 @@ func solveNQueens(n int) [][]string {
 		}
 	}
 
-	backTracking(n, 0, chessBoard, &res)
+	backtracking(n, 0, chessBoard, &res)
 	return res
 }
 
-func backTracking(n, row int, chessBoard [][]string, res *[][]string) {
+func backtracking(n, row int, chessBoard [][]string, res *[][]string) {
 	if row == n {
 		temp := make([]string, n)
 		for i, rowVals := range chessBoard {
@@ -37,7 +37,7 @@ func backTracking(n, row int, chessBoard [][]string, res *[][]string) {
 	for i := 0; i < n; i++ {
 		if isValid(n, row, i, chessBoard) {
 			chessBoard[row][i] = "Q"
-			backTracking(n, row+1, chessBoard, res)
+			backtracking(n, row+1, chessBoard, res)
 			chessBoard[row][i] = "."
 		}
 	}
