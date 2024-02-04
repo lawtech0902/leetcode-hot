@@ -38,7 +38,7 @@ func nearestExit(maze [][]byte, entrance []int) int {
 			ny := curr.y + d[1]
 			if nx >= 0 && nx < len(maze) && ny >= 0 && ny < len(maze[0]) && maze[nx][ny] == '.' && !visited[nx][ny] {
 				visited[nx][ny] = true
-				queue = append(queue, Point{nx, ny, p.steps + 1})
+				queue = append(queue, Point{nx, ny, curr.steps + 1})
 			}
 		}
 	}

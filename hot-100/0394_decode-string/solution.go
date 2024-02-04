@@ -12,7 +12,7 @@ import (
 	"strconv"
 	"strings"
 )
-s
+
 func decodeString(s string) string {
 	stack := []string{}
 	curNum := 0

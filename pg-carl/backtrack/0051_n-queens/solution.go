@@ -2,7 +2,7 @@
  * Author: robin-luo
  * Created time: 2024-02-02 15:05:02
  * Last Modified by: robin-luo
- * Last Modified time: 2024-02-02 15:53:24
+ * Last Modified time: 2024-02-04 19:50:16
  */
 
 package solution
@@ -36,8 +36,8 @@ func backtracking(n, row int, chessBoard [][]string, res *[][]string) {
 		*res = append(*res, temp)
 	}
 
-	for i := 0; i < n; i++ {n
-		if isValid(n, row, i chessBoard) {
+	for i := 0; i < n; i++ {
+		if isValid(n, row, i, chessBoard) {
 			chessBoard[row][i] = "Q"
 			backtracking(n, row+1, chessBoard, res)
 			chessBoard[row][i] = "."
