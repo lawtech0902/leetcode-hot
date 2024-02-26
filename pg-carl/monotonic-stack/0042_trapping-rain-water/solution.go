@@ -53,7 +53,7 @@ func trap1(height []int) int {
 				left := height[stack[len(stack)-1]]
 				right := height[i]
 				h := min(left, right) - height[mid]
-				w := i - stack[len(stack)-1] - 1
+				w := i - stack[len(stack)-1]
 				res += h * w
 			}
 		}

@@ -1,8 +1,8 @@
 /*
  * Author: robin-luo
- * Created time: 2024-02-21 20:07:46
+ * Created time: 2024-02-22 14:19:50
  * Last Modified by: robin-luo
- * Last Modified time: 2024-02-22 17:12:34
+ * Last Modified time: 2024-02-22 14:27:00
  */
 
 package solution
@@ -13,21 +13,21 @@ type TreeNode struct {
 }
 
 func pathSum(root *TreeNode, targetSum int) int {
-	var res int
+	res := 0
 	if root == nil {
-		return 0
+		return res
 	}
 
-	res += dfs(root, targetSum)
+	res = dfs(root, targetSum)
 	res += pathSum(root.Left, targetSum)
 	res += pathSum(root.Right, targetSum)
 	return res
 }
 
 func dfs(root *TreeNode, targetSum int) int {
-	var res int
+	res := 0
 	if root == nil {
-		return 0
+		return res
 	}
 
 	if root.Val == targetSum {
