@@ -2,7 +2,7 @@
  * Author: robin-luo
  * Created time: 2024-02-28 13:35:09
  * Last Modified by: robin-luo
- * Last Modified time: 2024-02-28 14:12:34
+ * Last Modified time: 2024-02-29 14:05:52
  */
 
 package solution
@@ -39,20 +39,20 @@ func (mh *MinHeap) Pop() any {
 }
 
 func mergeKLists(lists []*ListNode) *ListNode {
-	mh := MinHeap{}
+	mh := &MinHeap{}
+	heap.Init(mh)
 	for _, l := range lists {
 		if l != nil {
-			mh = append(mh, l)
+			heap.Push(mh, l)
 		}
 	}
 
-	heap.Init(&mh)
 	dummy := &ListNode{}
 	p := dummy
 	for mh.Len() > 0 {
-		node := heap.Pop(&mh).(*ListNode)
+		node := heap.Pop(mh).(*ListNode)
 		if node.Next != nil {
-			heap.Push(&mh, node.Next)
+			heap.Push(mh, node.Next)
 		}
 
 		p.Next = node

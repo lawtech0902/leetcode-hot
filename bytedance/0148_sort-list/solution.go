@@ -1,8 +1,8 @@
 /*
  * Author: robin-luo
- * Created time: 2024-02-28 10:08:11
+ * Created time: 2024-02-29 16:58:06
  * Last Modified by: robin-luo
- * Last Modified time: 2024-02-29 15:05:29
+ * Last Modified time: 2024-02-29 17:01:43
  */
 
 package solution
@@ -12,7 +12,26 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func mergeTwoLists(l1, l2 *ListNode) *ListNode {
+func sortList(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	slow, fast := head, head
+	for fast.Next != nil && fast.Next.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+
+	l1, l2 := head, slow.Next
+	slow.Next = nil
+	l1 = sortList(l1)
+	l2 = sortList(l2)
+	head = merge(l1, l2)
+	return head
+}
+
+func merge(l1, l2 *ListNode) *ListNode {
 	if l1 == nil {
 		return l2
 	}

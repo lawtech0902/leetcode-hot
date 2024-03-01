@@ -2,7 +2,7 @@
  * Author: robin-luo
  * Created time: 2024-02-27 15:12:07
  * Last Modified by: robin-luo
- * Last Modified time: 2024-02-27 15:30:42
+ * Last Modified time: 2024-02-29 17:50:50
  */
 
 package solution
@@ -38,7 +38,7 @@ func longestValidParentheses2(s string) int {
 		}
 
 		if left == right {
-			maxLen = max(maxLen, 2*right)
+			maxLen = max(maxLen, 2*left)
 		} else if right > left {
 			left, right = 0, 0
 		}
@@ -53,7 +53,7 @@ func longestValidParentheses2(s string) int {
 		}
 
 		if left == right {
-			maxLen = max(maxLen, 2*left)
+			maxLen = max(maxLen, 2*right)
 		} else if left > right {
 			left, right = 0, 0
 		}

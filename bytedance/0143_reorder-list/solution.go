@@ -2,7 +2,7 @@
  * Author: robin-luo
  * Created time: 2024-02-27 17:47:36
  * Last Modified by: robin-luo
- * Last Modified time: 2024-02-28 09:21:23
+ * Last Modified time: 2024-02-29 14:54:37
  */
 
 package solution
@@ -13,7 +13,7 @@ type ListNode struct {
 }
 
 func reorderList(head *ListNode) {
-	if head == nil {
+	if head == nil || head.Next == nil {
 		return
 	}
 
@@ -40,7 +40,6 @@ func reorderList(head *ListNode) {
 		temp1, temp2 := cur1.Next, cur2.Next
 		cur1.Next = cur2
 		cur2.Next = temp1
-		cur1 = temp1
-		cur2 = temp2
+		cur1, cur2 = temp1, temp2
 	}
 }

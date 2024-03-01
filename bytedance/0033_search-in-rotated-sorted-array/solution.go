@@ -2,7 +2,7 @@
  * Author: robin-luo
  * Created time: 2024-02-27 17:02:38
  * Last Modified by: robin-luo
- * Last Modified time: 2024-02-27 17:09:08
+ * Last Modified time: 2024-02-29 10:48:33
  */
 
 package solution
@@ -15,13 +15,17 @@ func search(nums []int, target int) int {
 			return mid
 		}
 
+		// 左半部分有序
 		if nums[mid] >= nums[l] {
 			if nums[l] <= target && target <= nums[mid] {
 				r = mid - 1
 			} else {
 				l = mid + 1
 			}
-		} else {
+		}
+
+		// 右半部分有序
+		if nums[mid] <= nums[r] {
 			if nums[mid] <= target && target <= nums[r] {
 				l = mid + 1
 			} else {
