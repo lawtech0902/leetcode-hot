@@ -2,7 +2,7 @@
  * Author: robin-luo
  * Created time: 2024-02-27 17:44:15
  * Last Modified by: robin-luo
- * Last Modified time: 2024-02-27 17:46:56
+ * Last Modified time: 2024-03-01 15:18:41
  */
 
 package solution
@@ -13,11 +13,9 @@ type ListNode struct {
 }
 
 func addTwoNumbers(l1, l2 *ListNode) *ListNode {
-	var (
-		head, tail *ListNode
-		carry      int
-	)
-
+	dummy := &ListNode{}
+	p := dummy
+	carry := 0
 	for l1 != nil || l2 != nil {
 		n1, n2 := 0, 0
 		if l1 != nil {
@@ -32,18 +30,13 @@ func addTwoNumbers(l1, l2 *ListNode) *ListNode {
 
 		sum := n1 + n2 + carry
 		sum, carry = sum%10, sum/10
-		if head == nil {
-			head = &ListNode{Val: sum}
-			tail = head
-		} else {
-			tail.Next = &ListNode{Val: sum}
-			tail = tail.Next
-		}
+		p.Next = &ListNode{Val: sum}
+		p = p.Next
 	}
 
 	if carry != 0 {
-		tail.Next = &ListNode{Val: carry}
+		p.Next = &ListNode{Val: carry}
 	}
 
-	return head
+	return dummy.Next
 }
