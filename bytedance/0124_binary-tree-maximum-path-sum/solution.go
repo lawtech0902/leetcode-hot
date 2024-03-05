@@ -2,7 +2,7 @@
  * Author: robin-luo
  * Created time: 2024-02-29 15:41:32
  * Last Modified by: robin-luo
- * Last Modified time: 2024-02-29 16:02:53
+ * Last Modified time: 2024-03-04 14:13:08
  */
 
 package solution
@@ -15,37 +15,18 @@ type TreeNode struct {
 }
 
 func maxPathSum(root *TreeNode) int {
-	maxSum := math.MinInt64
-	var maxGain func(root *TreeNode) int
-	maxGain = func(root *TreeNode) int {
-		if root == nil {
-			return 0
-		}
-
-		leftGain := max(maxGain(root.Left), 0)
-		rightGain := max(maxGain(root.Right), 0)
-		maxSum = max(maxSum, leftGain+root.Val+rightGain)
-		return root.Val + max(leftGain, rightGain)
-	}
-
-	maxGain(root)
-	return maxSum
+	maxVal := math.MinInt64
+	dfs(root, &maxVal)
+	return maxVal
 }
 
-func maxPathSum1(root *TreeNode) int {
-	res := math.MinInt64
-	var dfs func(node *TreeNode) int
-	dfs = func(node *TreeNode) int {
-		if node == nil {
-			return 0
-		}
-
-		left := dfs(node.Left)
-		right := dfs(node.Right)
-		res = max(res, node.Val+left+right)
-		return max(0, max(left, right)+node.Val)
+func dfs(node *TreeNode, maxVal *int) int {
+	if node == nil {
+		return 0
 	}
 
-	dfs(root)
-	return res
+	l := dfs(node.Left, maxVal)
+	r := dfs(node.Right, maxVal)
+	*maxVal = max(*maxVal, node.Val+l+r)
+	return max(0, max(l, r)+node.Val)
 }
