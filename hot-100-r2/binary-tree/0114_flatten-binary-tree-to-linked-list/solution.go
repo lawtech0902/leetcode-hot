@@ -10,22 +10,22 @@ type TreeNode struct {
 	Left, Right *TreeNode
 }
 
-var front = &TreeNode{}
-
 func flatten(root *TreeNode) {
-	preOrder(root)
-}
-
-func preOrder(node *TreeNode) {
-	if node == nil {
+	if root == nil {
 		return
 	}
 
-	l := node.Left
-	r := node.Right
-	front.Right = node
-	node.Left = nil
-	front = node
-	preOrder(l)
-	preOrder(r)
+	flatten(root.Left)
+	flatten(root.Right)
+
+	leftNode := root.Left
+	rightNode := root.Right
+	root.Right = leftNode
+	root.Left = nil
+
+	p := root
+	for p.Right != nil {
+		p = p.Right
+	}
+	p.Right = rightNode
 }

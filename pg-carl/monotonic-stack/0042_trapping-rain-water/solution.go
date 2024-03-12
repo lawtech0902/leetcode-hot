@@ -2,7 +2,7 @@
  * Author: robin-luo
  * Created time: 2024-02-19 15:43:50
  * Last Modified by: robin-luo
- * Last Modified time: 2024-02-19 16:27:41
+ * Last Modified time: 2024-03-08 10:05:24
  */
 
 package solution
@@ -53,7 +53,7 @@ func trap1(height []int) int {
 				left := height[stack[len(stack)-1]]
 				right := height[i]
 				h := min(left, right) - height[mid]
-				w := i - stack[len(stack)-1]
+				w := i - stack[len(stack)-1] - 1
 				res += h * w
 			}
 		}

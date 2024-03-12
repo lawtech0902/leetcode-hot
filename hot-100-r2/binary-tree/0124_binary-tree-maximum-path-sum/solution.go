@@ -5,25 +5,26 @@ __date__ = '2024/01/25 11:16'
 
 package solution
 
+import "math"
+
 type TreeNode struct {
 	Val         int
 	Left, Right *TreeNode
 }
 
 func maxPathSum(root *TreeNode) int {
-	maxSum := -1 << 63
-	var maxGain func(node *TreeNode) int
-	maxGain = func(node *TreeNode) int {
-		if node == nil {
-			return 0
-		}
+	maxVal := math.MinInt64
+	dfs(root, &maxVal)
+	return maxVal
+}
 
-		leftGain := max(maxGain(node.Left), 0)
-		rightGain := max(maxGain(node.Right), 0)
-		maxSum = max(maxSum, leftGain+node.Val+rightGain)
-		return node.Val + max(leftGain, rightGain)
+func dfs(node *TreeNode, maxVal *int) int {
+	if node == nil {
+		return 0
 	}
 
-	maxGain(root)
-	return maxSum
+	l := dfs(node.Left, maxVal)
+	r := dfs(node.Right, maxVal)
+	*maxVal = max(*maxVal, node.Val+l+r)
+	return max(0, max(l, r)+node.Val)
 }

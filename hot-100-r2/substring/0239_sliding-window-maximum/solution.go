@@ -23,7 +23,7 @@ func maxSlidingWindow(nums []int, k int) []int {
 		}
 
 		deque = append(deque, i)
-		if i >= k-1 {
+		if i-k+1 >= 0 {
 			res = append(res, nums[deque[0]])
 		}
 	}
