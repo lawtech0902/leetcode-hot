@@ -1,14 +1,15 @@
 /*
  * Author: robin-luo
- * Created time: 2024-03-04 10:38:18
+ * Created time: 2024-03-12 17:47:00
  * Last Modified by: robin-luo
- * Last Modified time: 2024-03-12 17:55:45
+ * Last Modified time: 2024-03-12 17:48:49
  */
 
 package solution
 
-func longestCommonSubsequence(t1, t2 string) int {
-	m, n := len(t1), len(t2)
+func findLength(nums1, nums2 []int) int {
+	m, n := len(nums1), len(nums2)
+	res := 0
 	dp := make([][]int, m+1)
 	for i := range dp {
 		dp[i] = make([]int, n+1)
@@ -16,13 +17,13 @@ func longestCommonSubsequence(t1, t2 string) int {
 
 	for i := 1; i <= m; i++ {
 		for j := 1; j <= n; j++ {
-			if t1[i-1] == t2[j-1] {
+			if nums1[i-1] == nums2[j-1] {
 				dp[i][j] = dp[i-1][j-1] + 1
-			} else {
-				dp[i][j] = max(dp[i-1][j], dp[i][j-1])
 			}
+
+			res = max(res, dp[i][j])
 		}
 	}
 
-	return dp[m][n]
+	return res
 }

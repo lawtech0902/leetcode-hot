@@ -27,7 +27,7 @@ func backtracking(nums, track []int, res *[][]int) {
 		track = append(track, cur)
 		nums = append(nums[:i], nums[i+1:]...)
 		backtracking(nums, track, res)
-		nums = append(nums[:i], append([]int{cur}, nums[i+1:]...)...)
+		nums = append(nums[:i], append([]int{cur}, nums[i:]...)...)
 		track = track[:len(track)-1]
 	}
 }

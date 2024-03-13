@@ -2,13 +2,13 @@
  * Author: robin-luo
  * Created time: 2024-02-27 15:39:51
  * Last Modified by: robin-luo
- * Last Modified time: 2024-03-01 10:00:14
+ * Last Modified time: 2024-03-13 14:04:32
  */
 
 package solution
 
-func minWindow(s, t string) string {
-	res := ""
+func minWindow(s string, t string) string {
+	var res string
 	if len(s) < len(t) {
 		return res
 	}
@@ -18,8 +18,10 @@ func minWindow(s, t string) string {
 		hash[t[i]]++
 	}
 
-	l, count, minLen := 0, len(t), len(s)+1
-	for r := 0; r < len(s); r++ {
+	count := len(t)
+	minLen := len(s) + 1
+	l, r := 0, 0
+	for r < len(s) {
 		hash[s[r]]--
 		if hash[s[r]] >= 0 {
 			count--
@@ -34,6 +36,8 @@ func minWindow(s, t string) string {
 			minLen = r - l + 1
 			res = s[l : r+1]
 		}
+
+		r++
 	}
 
 	return res
