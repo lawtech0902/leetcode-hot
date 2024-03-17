@@ -2,7 +2,7 @@
  * Author: robin-luo
  * Created time: 2024-02-28 10:14:49
  * Last Modified by: robin-luo
- * Last Modified time: 2024-02-28 10:20:42
+ * Last Modified time: 2024-03-15 11:04:05
  */
 
 package solution
@@ -18,8 +18,8 @@ func sortOddEvenList(head *ListNode) *ListNode {
 	}
 
 	odd, even := partition(head)
-	even = reverseList(even)
-	return mergeTwoLists(odd, even)
+	even = reverse(even)
+	return merge(odd, even)
 }
 
 func partition(head *ListNode) (*ListNode, *ListNode) {
@@ -32,13 +32,12 @@ func partition(head *ListNode) (*ListNode, *ListNode) {
 		even = even.Next
 	}
 
-	odd.Next = nil
 	return head, evenHead
 }
 
-func reverseList(head *ListNode) *ListNode {
-	cur := head
+func reverse(head *ListNode) *ListNode {
 	var pre *ListNode
+	cur := head
 	for cur != nil {
 		temp := cur.Next
 		cur.Next = pre
@@ -49,7 +48,7 @@ func reverseList(head *ListNode) *ListNode {
 	return pre
 }
 
-func mergeTwoLists(l1, l2 *ListNode) *ListNode {
+func merge(l1, l2 *ListNode) *ListNode {
 	if l1 == nil {
 		return l2
 	}
