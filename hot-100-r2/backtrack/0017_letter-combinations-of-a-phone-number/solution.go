@@ -4,7 +4,7 @@ __date__ = '2024/01/25 21:18'
 */
 
 package solution
-b
+
 var digitsArr = [10]string{
 	"",     // 0
 	"",     // 1
